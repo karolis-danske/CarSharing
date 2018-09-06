@@ -6,7 +6,7 @@ namespace Integration.Database
 {
     using Integartion.Database;
 
-    public class Passanger
+    public class Passenger
     {
         public string Id { get; set; }
         public string UserId { get; set; }

@@ -22,6 +22,6 @@ namespace Integartion.Database
 
         public List<Travel> Travels { get; set; }
 
-        public List<Passanger> Passangers { get; set; }
+        public List<Passenger> Passangers { get; set; }
     }
 }
