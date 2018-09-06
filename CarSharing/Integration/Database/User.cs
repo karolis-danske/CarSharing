@@ -17,6 +17,7 @@ namespace Integartion.Database
         [Required]
         public string PhoneNumber { get; set; }
 
+        public string CarId { get; set; }
         public Car Car { get; set; }
 
         public List<Travel> Travels { get; set; }

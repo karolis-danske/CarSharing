@@ -13,6 +13,7 @@ namespace Integration.Database
         public string Destination { get; set; }
         public DateTimeOffset DepartureTime { get; set; }
         public List<Passanger> Passangers { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
     }
 }
