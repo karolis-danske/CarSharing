@@ -29,6 +29,12 @@ namespace CarSharing.Users
         [HttpPost]
         public async Task<ActionResult> CreateUser([FromBody] CreateUserRequest request)
         {
+            var usersWithSameName = _db.Users.Where(x => x.Name == request.Name);
+            if (usersWithSameName.Any())
+            {
+                return BadRequest("User with this name already exists");
+            }
+
             var user = _db.Users.Add(
                 new User
                 {
