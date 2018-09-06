@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+    </style>
+    <title>Tripsy</title>
+  </head>
+  <body>
+    <!--The div element for the map -->
+    <div id="map"></div>
+    <script>
+// Initialize and add the map
+function initMap() {
+  // The location of Vilnius
+  var vilnius = {lat: 54.697413, lng: 25.260945};
+  // The map, centered at Vilnius
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 14, center: vilnius});
+  // The marker, positioned at Vilnius
+  var marker = new google.maps.Marker({position: vilnius, map: map});
+  var nowDate = new Date();
+  var travelMode = google.maps.TravelMode.WALKING;
+//   var drivingOptions = new google.maps.DrivingOptions;
+//   drivingOptions.departureTime = nowDate;
+  var distanceService = new google.maps.DistanceMatrixService();
+  //var distance = google.maps.DistanceMatrixRequest(false, false, false, ["Washington,DC"], ["New York City,NY"], "", travelMode);
+  getGoogleDistanceJSON("Washington,DC", "New York City,NY", "metric", "walking");
+  console.log(distance);
+}
+function getGoogleGeocodeJSON(address) {
+    address = address.split(' ').join('+');
+    var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBmrpv61zgCo0rhWV4ssHBviBXQcsbMVk4";
+
+    httpGetAsync(url);
+}
+function getGoogleDistanceJSON(addressFrom, addressTo, units, mode) {
+    addressFrom = addressFrom.split(' ').join('+');
+    addressTo = addressTo.split(' ').join('+');
+    var url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=" + units + "&mode=" + mode + "&origins=" + addressFrom + "&destinations=" + addressTo + "&key=AIzaSyBmrpv61zgCo0rhWV4ssHBviBXQcsbMVk4";
+
+    httpGetAsync(url);
+}
+function httpGetAsync(url)
+{
+    const Http = new XMLHttpRequest();
+    Http.setRequestHeader("", value);
+    Http.open("GET", url);
+    Http.send();
+    Http.onreadystatechange=(e)=>{
+        console.log(Http.response);
+    }
+}
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmrpv61zgCo0rhWV4ssHBviBXQcsbMVk4&callback=initMap">
+    </script>
+  </body>
+</html>
