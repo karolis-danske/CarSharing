@@ -49,10 +49,10 @@ namespace CarSharing.Travels
             return Ok(travel.Id);
         }
 
-        [HttpPost("{travelId}/{userId}")]
-        public async Task<ActionResult<string>> AddPassanger([FromRoute] string travelId, [FromRoute] string userId)
+        [HttpPost("{travelId}/{passengerUserId}")]
+        public async Task<ActionResult<string>> AddPassanger([FromRoute] string travelId, [FromRoute] string passengerUserId)
         {
-            var passanger = new Passenger {TravelId = travelId, PassengerUserId = userId};
+            var passanger = new Passenger {TravelId = travelId, PassengerUserId = passengerUserId};
 
             _db.Passangers.Add(passanger);
 
@@ -79,10 +79,10 @@ namespace CarSharing.Travels
         }
 
         [HttpGet("allPassengers")]
-        public ActionResult<IEnumerable<User>> GetPassangers()
+        public ActionResult<IEnumerable<Passenger>> GetPassangers()
         {
-            var users = _db.Passangers.ToList();
-            return Ok(users);
+            var passengers = _db.Passangers.ToList();
+            return Ok(passengers);
         }
 
     }
