@@ -6,13 +6,13 @@ namespace Integration.Database
 {
     using Integartion.Database;
 
-    public class Travels
+    public class Travel
     {
         public string Id { get; set; }
         public string Origin { get; set; }
         public string Destination { get; set; }
         public DateTimeOffset DepartureTime { get; set; }
-        public List<Passangers> Passangers { get; set; }
-        public Users User { get; set; }
+        public List<Passanger> Passangers { get; set; }
+        public User User { get; set; }
     }
 }

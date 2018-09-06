@@ -7,7 +7,7 @@ namespace Integartion.Database
     using System.ComponentModel.DataAnnotations;
     using Integration.Database;
 
-    public class Users
+    public class User
     {
         public string Id { get; set; }
 
@@ -17,10 +17,10 @@ namespace Integartion.Database
         [Required]
         public string PhoneNumber { get; set; }
 
-        public Cars Car { get; set; }
+        public Car Car { get; set; }
 
-        public List<Travels> Travels { get; set; }
+        public List<Travel> Travels { get; set; }
 
-        public List<Passangers> Passangers { get; set; }
+        public List<Passanger> Passangers { get; set; }
     }
 }

@@ -16,16 +16,16 @@ namespace Integartion.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Users>().HasOne<Cars>(u => u.Car).WithOne(c => c.User);
-            modelBuilder.Entity<Users>().HasMany<Travels>().WithOne();
-            modelBuilder.Entity<Users>().HasMany<Passangers>().WithOne();
-            modelBuilder.Entity<Travels>().HasMany<Passangers>().WithOne();
+            modelBuilder.Entity<User>().HasOne<Car>(u => u.Car).WithOne(c => c.User);
+            modelBuilder.Entity<User>().HasMany<Travel>().WithOne();
+            modelBuilder.Entity<User>().HasMany<Passanger>().WithOne();
+            modelBuilder.Entity<Travel>().HasMany<Passanger>().WithOne();
         }
 
         public DbSet<TestTable> TestTables { get; set; }
-        public DbSet<Cars> Cars { get; set; }
-        public DbSet<Travels> Travels { get; set; }
-        public DbSet<Users> Users { get; set; }
-        public DbSet<Passangers> Passangers { get; set; }
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<Travel> Travels { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Passanger> Passangers { get; set; }
     }
 }

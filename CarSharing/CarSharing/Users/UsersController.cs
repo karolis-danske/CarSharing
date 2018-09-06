@@ -21,7 +21,7 @@ namespace CarSharing.Users
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return await _db.Users.Include(x => x.Car).ToListAsync();
         }
@@ -30,11 +30,11 @@ namespace CarSharing.Users
         public async Task<ActionResult> CreateUser(CreateUserRequest request)
         {
             _db.Users.Add(
-                new Users
+                new User
                 {
                     Name = request.Name,
                     PhoneNumber = request.PhoneNumber,
-                    Car = new Cars
+                    Car = new Car
                     {
                         Number = request.Car.Number
                     }
@@ -49,7 +49,7 @@ namespace CarSharing.Users
         {
             var user = _db.Users.Single(x => x.Id == userId);
 
-            _db.Cars.Add(new Cars { User = user, Number = request.Number });
+            _db.Cars.Add(new Car { User = user, Number = request.Number });
 
             await _db.SaveChangesAsync();
             return Ok();

@@ -4,14 +4,12 @@ using System.Text;
 
 namespace Integration.Database
 {
-    using System.ComponentModel.DataAnnotations;
     using Integartion.Database;
 
-    public class Cars
+    public class Passanger
     {
         public string Id { get; set; }
-        [Required]
-        public string Number { get; set; }
-        public Users User { get; set; }
+        public User User { get; set; }
+        public Travel Travel { get; set; }
     }
 }
