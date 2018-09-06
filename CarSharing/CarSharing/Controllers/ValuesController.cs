@@ -6,10 +6,34 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarSharing.Controllers
 {
+    using Database;
+
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly CarSharingContext _db; 
+
+        public ValuesController(CarSharingContext context)
+        {
+            _db = context;
+        }
+
+        [HttpGet("car")]
+        public ActionResult<IEnumerable<TestTable>> GetTestEntries()
+        {
+            return _db.TestTables;
+        }
+
+        [HttpPost("car")]
+        public async Task<ActionResult> PostEntries(TestTable test)
+        {
+            _db.TestTables.Add(test);
+            await _db.SaveChangesAsync();
+
+            return Ok();
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()

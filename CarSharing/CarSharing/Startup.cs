@@ -12,6 +12,9 @@ using Microsoft.Extensions.Options;
 
 namespace CarSharing
 {
+    using Database;
+    using Microsoft.EntityFrameworkCore;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -25,6 +28,8 @@ namespace CarSharing
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<CarSharingContext>(opt => opt.UseInMemoryDatabase());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
