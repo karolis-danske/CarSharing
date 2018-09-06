@@ -14,6 +14,7 @@ namespace CarSharing
 {
     using Integartion.Database;
     using Microsoft.EntityFrameworkCore;
+    using Swashbuckle.AspNetCore.Swagger;
 
     public class Startup
     {
@@ -30,6 +31,11 @@ namespace CarSharing
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<CarSharingContext>(opt => opt.UseInMemoryDatabase());
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "CarSharing API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +45,16 @@ namespace CarSharing
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CarSharing V1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseMvc();
         }
