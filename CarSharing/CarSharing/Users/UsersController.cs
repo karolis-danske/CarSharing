@@ -21,13 +21,19 @@ namespace CarSharing.Users
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetUsers()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return Ok(await _db.Users.Include(x => x.Car).ToListAsync());
         }
 
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<User>> GetUser([FromRoute] string userId)
+        {
+            return Ok(await _db.Users.Include(x => x.Car).SingleAsync(x => x.Id == userId));
+        }
+
         [HttpPost]
-        public async Task<ActionResult> CreateUser([FromBody] CreateUserRequest request)
+        public async Task<ActionResult<string>> CreateUser([FromBody] CreateUserRequest request)
         {
             var usersWithSameName = _db.Users.Where(x => x.Name == request.Name);
             if (usersWithSameName.Any())
@@ -54,24 +60,35 @@ namespace CarSharing.Users
                 await _db.SaveChangesAsync();
             }
 
-            return Ok();
+            return Ok(user.Entity.Id);
         }
 
         [HttpPost("{userId}/cars")]
-        public async Task<ActionResult> AddCar([FromRoute] string userId, [FromBody] CreateCarRequest request)
+        public async Task<ActionResult<string>> AddCar([FromRoute] string userId, [FromBody] CreateCarRequest request)
         {
             var user = _db.Users.Single(x => x.Id == userId);
 
-            _db.Cars.Add(new Car { User = user, Number = request.Number });
+            var car = new Car { Number = request.Number};
+
+            _db.Cars.Add(car);
+            user.Car = car;
 
             await _db.SaveChangesAsync();
-            return Ok();
+            return Ok(car.Id);
         }
 
         [HttpGet("{userId}/cars")]
-        public async Task<ActionResult> GetCar([FromRoute] string userId)
+        public async Task<ActionResult<Car>> GetCar([FromRoute] string userId)
         {
             return Ok((await _db.Users.Include(x => x.Car).SingleAsync(x => x.Id == userId)).Car);
+        }
+
+        [HttpGet("{userId}/travels")]
+        public ActionResult<IEnumerable<Travel>> GetTravels([FromRoute] string userId)
+        {
+            var travels = _db.Passangers.Where(x => x.UserId == userId).Select(x => x.Travel);
+
+            return Ok(travels);
         }
     }
 }
