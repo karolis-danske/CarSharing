@@ -83,6 +83,12 @@ namespace CarSharing.Users
             return Ok((await _db.Users.Include(x => x.Car).SingleAsync(x => x.Id == userId)).Car);
         }
 
+        [HttpGet("allCars")]
+        public async Task<ActionResult<List<Car>>> GetCars()
+        {
+            return Ok(await _db.Cars.ToListAsync());
+        }
+
         [HttpGet("{userId}/travels")]
         public ActionResult<IEnumerable<Travel>> GetTravels([FromRoute] string userId)
         {
