@@ -16,7 +16,7 @@ namespace Integartion.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Users>().HasOne<Cars>().WithOne();
+            modelBuilder.Entity<Users>().HasOne<Cars>(u => u.Car).WithOne(c => c.User);
             modelBuilder.Entity<Users>().HasMany<Travels>().WithOne();
             modelBuilder.Entity<Users>().HasMany<Passangers>().WithOne();
             modelBuilder.Entity<Travels>().HasMany<Passangers>().WithOne();
