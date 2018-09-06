@@ -24,7 +24,7 @@ namespace CarSharing.Travels
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddTravel([FromBody] CreateTravelRequest request)
+        public async Task<ActionResult<string>> AddTravel([FromBody] CreateTravelRequest request)
         {
             var travel = new Travel
             {
@@ -41,11 +41,22 @@ namespace CarSharing.Travels
         }
 
         [HttpPost("{travelId}/{userId}")]
-        public async Task<ActionResult> AddPassanger([FromRoute] string travelId, [FromRoute] string userId)
+        public async Task<ActionResult<string>> AddPassanger([FromRoute] string travelId, [FromRoute] string userId)
         {
             var passanger = new Passenger {TravelId = travelId, UserId = userId};
 
             _db.Passangers.Add(passanger);
+
+            await _db.SaveChangesAsync();
+            return Ok(passanger.Id);
+        }
+
+        [HttpDelete("{travelId}/{userId}")]
+        public async Task<ActionResult> RemovePassanger([FromRoute] string travelId, [FromRoute] string userId)
+        {
+            var passanger = _db.Passangers.Single(x => x.TravelId == travelId && x.UserId == userId);
+
+            _db.Passangers.Remove(passanger);
 
             await _db.SaveChangesAsync();
             return Ok();

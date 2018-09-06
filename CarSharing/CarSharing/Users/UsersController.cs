@@ -21,13 +21,19 @@ namespace CarSharing.Users
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetUsers()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return Ok(await _db.Users.Include(x => x.Car).ToListAsync());
         }
 
+        [HttpGet]
+        public async Task<ActionResult<User>> GetUser([FromRoute] string userId)
+        {
+            return Ok(await _db.Users.Include(x => x.Car).SingleAsync(x => x.Id == userId));
+        }
+
         [HttpPost]
-        public async Task<ActionResult> CreateUser([FromBody] CreateUserRequest request)
+        public async Task<ActionResult<string>> CreateUser([FromBody] CreateUserRequest request)
         {
             var usersWithSameName = _db.Users.Where(x => x.Name == request.Name);
             if (usersWithSameName.Any())
@@ -58,7 +64,7 @@ namespace CarSharing.Users
         }
 
         [HttpPost("{userId}/cars")]
-        public async Task<ActionResult> AddCar([FromRoute] string userId, [FromBody] CreateCarRequest request)
+        public async Task<ActionResult<string>> AddCar([FromRoute] string userId, [FromBody] CreateCarRequest request)
         {
             var user = _db.Users.Single(x => x.Id == userId);
 
@@ -71,7 +77,7 @@ namespace CarSharing.Users
         }
 
         [HttpGet("{userId}/cars")]
-        public async Task<ActionResult> GetCar([FromRoute] string userId)
+        public async Task<ActionResult<Car>> GetCar([FromRoute] string userId)
         {
             return Ok((await _db.Users.Include(x => x.Car).SingleAsync(x => x.Id == userId)).Car);
         }
