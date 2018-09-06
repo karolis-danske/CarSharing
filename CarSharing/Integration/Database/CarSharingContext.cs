@@ -51,7 +51,7 @@ namespace Integartion.Database
             modelBuilder.Entity<Travel>().HasData(travel);
 
             var passenger = new Passenger()
-            {   
+            {
                 Id = "PassengerVeryUniqueGuid",
                 TravelId = travel.Id,
                 PassengerUserId = passengerUser.Id

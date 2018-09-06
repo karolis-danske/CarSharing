@@ -31,7 +31,7 @@ namespace CarSharing
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<CarSharingContext>(opt => opt.UseInMemoryDatabase("MEMORY"));
+            services.AddDbContext<CarSharingContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("CarSharing")));
 
             services.AddSwaggerGen(c =>
             {
@@ -43,11 +43,11 @@ namespace CarSharing
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             // seed in memory database
-            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            {
-                var context = serviceScope.ServiceProvider.GetService<CarSharingContext>();
-                context.Database.EnsureCreated();
-            }
+            //using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            //{
+            //    var context = serviceScope.ServiceProvider.GetService<CarSharingContext>();
+            //    context.Database.Migrate();
+            //}
 
             if (env.IsDevelopment())
             {
