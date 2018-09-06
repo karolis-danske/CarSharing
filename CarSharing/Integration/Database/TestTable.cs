@@ -1,4 +1,4 @@
-﻿namespace CarSharing.Database
+﻿namespace Integration.Database
 {
     public class TestTable
     {

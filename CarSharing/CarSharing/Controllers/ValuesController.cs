@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CarSharing.Controllers
+namespace Integration.Controllers
 {
     using Database;
 

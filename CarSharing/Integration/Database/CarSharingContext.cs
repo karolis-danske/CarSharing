@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarSharing.Database
+namespace Integration.Database
 {
     using Microsoft.EntityFrameworkCore;
 
