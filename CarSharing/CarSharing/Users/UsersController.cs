@@ -21,31 +21,38 @@ namespace CarSharing.Users
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult> GetUsers()
         {
-            return await _db.Users.Include(x => x.Car).ToListAsync();
+            return Ok(await _db.Users.Include(x => x.Car).ToListAsync());
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateUser(CreateUserRequest request)
+        public async Task<ActionResult> CreateUser([FromBody] CreateUserRequest request)
         {
-            _db.Users.Add(
+            var user = _db.Users.Add(
                 new User
                 {
                     Name = request.Name,
                     PhoneNumber = request.PhoneNumber,
-                    Car = new Car
-                    {
-                        Number = request.Car.Number
-                    }
                 });
-
             await _db.SaveChangesAsync();
+
+            if (request.Car != null)
+            {
+                var car = new Car {Number = request.Car.Number};
+                _db.Cars.Add(car);
+
+                user.Entity.CarId = car.Id;
+                _db.Users.Update(user.Entity);
+
+                await _db.SaveChangesAsync();
+            }
+
             return Ok();
         }
 
-        [HttpPost("{id}/cars")]
-        public async Task<ActionResult> AddCar(string userId, CreateCarRequest request)
+        [HttpPost("{userId}/cars")]
+        public async Task<ActionResult> AddCar([FromRoute] string userId, [FromBody] CreateCarRequest request)
         {
             var user = _db.Users.Single(x => x.Id == userId);
 
@@ -53,6 +60,12 @@ namespace CarSharing.Users
 
             await _db.SaveChangesAsync();
             return Ok();
+        }
+
+        [HttpGet("{userId}/cars")]
+        public async Task<ActionResult> GetCar([FromRoute] string userId)
+        {
+            return Ok((await _db.Users.Include(x => x.Car).SingleAsync(x => x.Id == userId)).Car);
         }
     }
 }
