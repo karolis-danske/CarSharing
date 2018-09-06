@@ -1,0 +1,29 @@
+.progress-bar {padding: 24px 0; position: relative}
+
+	.progress-bar > span {
+		height: 4px;
+		display: block;
+		position: absolute;
+		transition: width 0.3s ease-out;
+		border-radius: 2px;
+		background-color: #009edd}
+		
+		.progress-bar[data-step="1"] > span {width: 25%}
+		.progress-bar[data-step="2"] > span {width: 35%}
+		.progress-bar[data-step="3"] > span {width: 50%}
+		.progress-bar[data-step="4"] > span {width: 75%}
+		.progress-bar[data-step="5"] > span {width: 95%}
+		.progress-bar[data-step="6"] > span {width: 100%}
+
+	.progress-bar:before {
+		display: block;
+		content: attr(data-caption);
+		font-size: 0.9em;
+		margin-bottom: 20px}
+
+	.progress-bar:after {
+		height: 4px;
+		display: block;
+		content: "";
+		border-radius: 2px;
+		background-color: #d7e9f1}

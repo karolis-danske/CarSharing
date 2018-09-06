@@ -1,0 +1,129 @@
+@import url("font.css");
+	
+* {box-sizing: border-box}
+*::selection {background-color: #1391fd; color: #fff}
+html {background-color: #fff}
+body {margin:0; color: #1391fd; font-family: "Roboto", "Tahoma", Sans-Serif; overflow-x: hidden}	
+	
+ul, li {margin: 0; padding: 0; list-style: none}
+
+h2, h3, h4 {font-family: Roboto, Serif; color: inherit; text-align: center}
+	h2 {font-size: 1.8em; margin-bottom: 1.3em}	
+		@media screen and (min-width: 1024px) {h2 {font-size: 2.2em}}
+	
+	h3 {font-size: 1.4em}
+	h4 {font-size: 0.8em; margin: 0.8em 0}
+
+.container {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	right: 0}
+	
+.container > .content {
+	background-color: #fff;
+	border-radius: 2px;
+	position: relative;
+	margin: 0 auto 8px;
+	max-width: 480px;
+	transition: margin, padding 0.3s ease-out;
+	box-shadow: 0 0 4px 0 rgba(0, 55, 85, 0.1);
+	padding: 24px}
+	
+	.container > .content.cards {border-radius: 0; background-color: transparent; padding: 0}
+	
+	.container > .content > hr {
+		border: 0;
+		height: 1px;
+		background-color: #e5ebee;
+		margin: 20px 0}	
+		
+	.container > .content > p {
+		margin-bottom: 2em;
+		line-height: 1.5em;
+		text-align: inherit}
+		
+		.container > .content > p.disclaimer {
+			font-size: 0.9em;
+			color: #7f9baa;
+			text-align: center;
+			margin-bottom: 1em}
+
+a {text-decoration: none}
+	a.more-url {color: #009fda}
+		a.more-url:hover {text-decoration: underline}
+		a.more-url > i {margin-left: 0.5em}
+		a.more-url > i::before {padding-bottom: 1px}
+		
+.cta-area {margin-top: 1em; text-align: center}	
+	.cta-area > .btn:first-child {margin-left: 0}
+	.cta-area > .more-url {display: block; margin-top: 20px}
+
+section.map {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: url(temp-images/map.jpg) no-repeat center;
+	background-size: cover;
+}	
+
+.list > li {
+	display: block;
+	padding: 16px 0;
+	border-bottom: 1px solid #dcefff}
+
+	.list > li:last-child {border-bottom: 0}
+
+	.list.passengers > li span {
+		padding: 10px 0;
+		vertical-align: top;
+		display: inline-block;
+		font-size: 1.2em}
+
+	.list.passengers > li span.name {padding-left: 15px}
+	.list.passengers > li span.destination {float: right}
+	
+	.list.drivers > li > div {display: inline-block; width: 50%; vertical-align: top}
+		.list.drivers > li > div.info {text-align: right}
+		
+	.list.drivers > li .name, .list.drivers > li .number {display: block; font-size: 1.3em; font-weight: 700; margin-bottom: 12px}
+	.list.drivers > li .time {display: block; margin-bottom: 16px}
+
+.call-btn {
+	display: inline-block;
+	border: 1px solid #1391fd;
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+	background: url(images/call-answer.svg) no-repeat center;
+	background-size: 20px;
+}
+
+.status-icon {text-align: center; margin: 2em 0}
+	.status-icon > span {
+		display: inline-block;
+		width: 60px;
+		height: 60px;
+		border-radius: 30px;
+		border: 1px dashed #1391fd;
+		font-size: 40px;
+		color: #1391fd}
+
+/* LOADER */
+
+.loader {
+	width: 60px;
+	height: 60px;
+	display: block;
+	background: url(images/loader.svg) no-repeat center; 
+	background-size: 60px;
+	margin: 0 auto;
+	animation: rotate 1s infinite linear;
+}
+
+@keyframes rotate {
+  from {transform: rotate(0deg)}
+  to {transform: rotate(359deg)}
+}

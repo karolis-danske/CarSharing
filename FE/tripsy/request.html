@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>Tripsy</title>
+
+	<link rel="stylesheet" href="layout/style.css">
+	<script src="js/dom.js"></script>
+	<script src="js/prototype.js"></script>
+</head>
+<body class="homepage">
+<div id="wrapper" class="wrapper">
+
+	<section class="map"></section>
+	
+	<section role="main" class="container">
+		<div class="content">
+			<h3>Requesting ride</h3>
+			<div class="loader"></div>
+			<div class="cta-area">
+				<a class="btn primary" href="index.html">Cancel</a>
+			</div>	
+		
+		</div>
+	</section>
+</div>
+<script>
+setTimeout(function(){ 
+	window.location = "ride-accepted.html"
+}, 5000);
+</script>
+</body>
+</html>

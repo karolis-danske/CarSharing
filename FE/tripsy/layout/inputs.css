@@ -1,0 +1,37 @@
+input[type="text"] {
+	display: block;
+	padding: 12px 18px;
+	font-family: inherit;
+	width: 100%;
+	font-size: 1em;
+	background-color: #e7f4fe;
+	padding-left: 50px;
+	color: #1391fd;
+	border-radius: 2px;
+	border: solid 1px transparent}
+	
+	input[type="text"]:active, input[type="text"]:focus {background-color: #fff; border: solid 1px #1391fd}	
+	input[type="text"].invalid {border: solid 1px #fbb273}
+
+.input-group > label {display: inline-block; width: 100%; position: relative}
+	.input-group > label > span {display: block; margin-bottom: 8px; text-align: left; font-size: 0.9em}
+	.input-group > label > i {
+		display: block;
+		left: 12px;
+		top: 4px;
+		position: absolute;
+		font-size: 1.8em}
+
+.time-select {margin-bottom: 2em}		
+.time-select > .item {
+	background-color: #e7f4fe;
+	color: #1391fd;
+	border-radius: 4px;
+	display: inline-block;
+	padding: 0.6em;
+	text-align: center;
+	margin-right: 8px;
+	width: calc(25% - 8px)}
+
+	.time-select > .item:last-child {margin-right: 0; width: 25%}
+	.time-select > .item.active {background-color: #1391fd;	color: #fff}

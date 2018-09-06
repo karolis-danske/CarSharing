@@ -1,0 +1,76 @@
+body.modal-open {overflow: hidden}
+
+.modal {
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	text-align: center;
+	z-index: 1010;
+	background-color: rgba(18, 64, 97, 0.8);	
+	visibility: hidden;
+	opacity: 0;
+	overflow-y: auto;
+	overflow-x: hidden}
+	
+	.modal.fade {transition: all 0.3s ease-out}	
+	.modal.in {visibility: visible; opacity: 1}
+
+	.modal:before {
+		content: "";
+		display: inline-block;
+		vertical-align: middle;
+		height: 100%;
+		margin-right: -0.25em}
+
+	.modal .modal-dialog {	
+		vertical-align: middle;
+		height: auto;
+		width: 100%;
+		max-width: 410px;
+		position: relative;
+		display: inline-block;
+		border: 8px solid transparent;
+		border-right: 5px solid transparent}
+
+	.modal .modal-header {
+		text-align: left;
+		color: #1391fd;
+		background-color: #fff;
+		border-bottom: 1px solid #1391fd;
+		font-weight: 700;
+		padding: 36px 48px 24px 24px;
+		font-family: "Roboto", "Tahoma", Sans-Serif;
+		font-size: 1.3em;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px}
+	
+	.modal .modal-body {
+		background-color: #fff;
+		text-align: left;
+		margin-top: -1px; /* IE bug fix */
+		color: #7f9baa;
+		line-height: 1.5;
+		padding: 10px 24px 24px 24px;
+		font-size: 16px;
+		font-family: "Danske", "Tahoma", Sans-Serif;
+		font-weight: normal;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px}
+	
+	.modal .modal-close {
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		font-size: 24.64px;
+		outline: 0;
+		padding: 20px 14px 10px 14px;
+		color: #009FDA;
+		opacity: 0.7;
+		border: 0px;
+		background: transparent;
+		cursor: pointer}
+
+		.modal .modal-close:hover {opacity: 1}	

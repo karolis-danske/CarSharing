@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>Tripsy</title>
+
+	<link rel="stylesheet" href="layout/style.css">
+	<script src="js/dom.js"></script>
+	<script src="js/prototype.js"></script>
+</head>
+<body class="homepage">
+<div id="wrapper" class="wrapper">
+
+	<section class="map"></section>
+	
+	<section role="main" class="container">
+		<div class="content">
+			<h3>Awaiting passengers</h3>
+			<div class="loader"></div>
+			<p style="text-align: center">Time left to your trip: <b>23min</b></p>
+			<div class="cta-area">
+				<a class="btn primary" href="index.html">Cancel trip</a>
+			</div>	
+		
+		</div>
+	</section>
+	<div class="temp-dialog-initiator" prototype-modal-header="Someone wants to ride with you" prototype-modal-body="<div style='color: #1391fd; font-size: 1.2em; padding: 1em 0'><span style='display: inline-block'><b>Austeja</b></span><span style='display: inline-block; float: right'>Dominikonu g. 76</span></div><div class='cta-area'><a class='btn primary' href='accept.html'>Accept</a><a class='btn secondary' href='#' prototype-action='close-modal'>Decline</a></div>"></div>
+</div>
+<script>
+setTimeout(function(){ 
+	initModal($(".temp-dialog-initiator"));
+}, 5000);
+</script>
+</body>
+</html>

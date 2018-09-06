@@ -1,0 +1,38 @@
+ul.flow-steps {margin-top: 3em}
+ul.flow-steps li {display: block; position: relative; padding: 0 0 30px 70px}
+	ul.flow-steps li > span {
+		font-weight: 700;
+		position: absolute;
+		font-size: 1.2em;
+		left: 0;
+		top: 0;
+		color: #7f9baa;
+		height: 40px;
+		width: 40px;
+		border-radius: 20px;
+		text-align: center;
+		padding: 8px;
+		border: 1px dashed #7f9baa}
+	
+		ul.flow-steps li:after {
+			position: absolute;
+			display: block;
+			content: "";
+			left: 20px;
+			top: 40px;
+			height: calc(100% - 24px);
+			width: 1px;
+			border-left: 1px dashed #7f9baa}
+		
+			ul.flow-steps li:last-child:after {height: calc(100% - 70px)}
+		
+		ul.flow-steps li.done > span {
+			color: #fff;
+			background-color: #09B89D;
+			border: 1px solid transparent}
+			
+			ul.flow-steps li.done:after {border-left: 1px solid #003755}
+	
+	@media screen and (min-width: 380px) {ul.benefit-list li {width: calc(50% - 4px)}}
+	@media screen and (min-width: 768px) {ul.benefit-list li {width: calc(33.33333% - 6px)}}
+	@media screen and (min-width: 1200px) {ul.benefit-list li {width: calc(20% - 6px)}}

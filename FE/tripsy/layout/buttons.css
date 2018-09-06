@@ -1,0 +1,76 @@
+.btn {
+	border: 1px solid #ebebeb;
+	background-color: #fff;
+	color: #1391fd;
+	display: inline-block;
+	border-radius: 4px;
+	padding: 1.2em 2.5em;
+	font-size: 1em;
+	line-height: 1em;
+	font-family: "Danske", "Tahoma", Sans-Serif;
+	margin: 0 0 0.8em 0.8em;
+	cursor: pointer;
+	position: relative}
+	
+	.modal .btn {width: calc(50% - 8px)}
+	
+	@media only screen and (max-width: 460px) {	
+		.btn {width: 100%; margin-left: 0}
+	}
+	
+	.btn:focus {outline: 0}
+
+	.btn:after {
+		content: "";
+		display: block;
+		opacity: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: 4px;
+		cursor: pointer;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(255,255,255,0.1);
+		background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.1) 100%)}
+
+		.btn:hover:after, .btn:focus:after {opacity: 1}
+		
+		@media only screen and (max-width: 1023px) {
+			.btn:after {display: none}	
+		}
+
+	.btn.primary {
+		border: 0;
+		background-color: #009fda;
+		background: rgba(0,166,227,1);
+		background: linear-gradient(to bottom, rgba(0,166,227,1) 0%, rgba(4,160,217,1) 100%);
+		color: #fff}
+
+	.btn.success {
+		border: 0;
+		background-color: #0ab89d;
+		background: rgba(10,209,180,1);
+		background: linear-gradient(to bottom, rgba(10,209,180,1) 0%, rgba(10,184,157,1) 100%);
+		color: #fff}
+
+	.btn.danger {
+		border: 0;
+		background-color: #ef5d71;
+		background: rgba(239,93,113,1);
+		background: linear-gradient(to bottom, rgba(239,93,113,1) 0%, rgba(231,90,109,1) 100%);
+		color: #fff}
+
+	.btn.alternate {
+		background: none;
+		background-color: #fff;
+		color: #003755}
+
+	.btn:disabled {background: rgba(0,0,0,0.1); color: rgba(0,0,0,0.4)}
+
+	.primary .btn:disabled {color: rgba(255,255,255,0.4)}
+
+	.btn:disabled:hover:after,
+	.btn:disabled:focus:after {display: none}
