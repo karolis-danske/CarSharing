@@ -1,4 +1,4 @@
-﻿namespace Integration.Database
+﻿namespace Integartion.Database
 {
     public class TestTable
     {

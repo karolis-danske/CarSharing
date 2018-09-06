@@ -10,9 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Integration
+namespace CarSharing
 {
-    using Database;
+    using Integartion.Database;
     using Microsoft.EntityFrameworkCore;
 
     public class Startup

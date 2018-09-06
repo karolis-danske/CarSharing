@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Integration.Controllers
+namespace CarSharing.Controllers
 {
-    using Database;
+    using Integartion.Database;
 
     [Route("api/[controller]")]
     [ApiController]
