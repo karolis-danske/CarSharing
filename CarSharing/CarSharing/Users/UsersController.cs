@@ -26,6 +26,7 @@ namespace CarSharing.Users
             return Ok(await _db.Users.Include(x => x.Car).ToListAsync());
         }
 
+        [Route("{userId}")]
         [HttpGet]
         public async Task<ActionResult<User>> GetUser([FromRoute] string userId)
         {
@@ -68,9 +69,10 @@ namespace CarSharing.Users
         {
             var user = _db.Users.Single(x => x.Id == userId);
 
-            var car = new Car {User = user, Number = request.Number};
+            var car = new Car { Number = request.Number};
 
             _db.Cars.Add(car);
+            user.Car = car;
 
             await _db.SaveChangesAsync();
             return Ok(car.Id);

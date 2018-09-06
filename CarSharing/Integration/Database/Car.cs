@@ -12,6 +12,5 @@ namespace Integration.Database
         public string Id { get; set; }
         [Required]
         public string Number { get; set; }
-        public User User { get; set; }
     }
 }
