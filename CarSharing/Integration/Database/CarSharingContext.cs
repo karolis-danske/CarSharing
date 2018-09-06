@@ -61,7 +61,6 @@ namespace Integartion.Database
 
         
 
-        public DbSet<TestTable> TestTables { get; set; }
         public DbSet<Car> Cars { get; set; }
         public DbSet<Travel> Travels { get; set; }
         public DbSet<User> Users { get; set; }
