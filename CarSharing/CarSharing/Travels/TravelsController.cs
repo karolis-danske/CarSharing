@@ -25,6 +25,13 @@ namespace CarSharing.Travels
             return Ok(travels);
         }
 
+        [HttpGet("all")]
+        public ActionResult GetAllTravels()
+        {
+            var travels = _db.Travels.ToList();
+            return Ok(travels);
+        }
+
         [HttpPost]
         public async Task<ActionResult<string>> AddTravel([FromBody] CreateTravelRequest request)
         {
