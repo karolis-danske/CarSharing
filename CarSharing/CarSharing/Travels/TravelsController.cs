@@ -71,7 +71,7 @@ namespace CarSharing.Travels
             return Ok();
         }
 
-        [HttpDelete("{travelId}")]
+        [HttpGet("{travelId}")]
         public ActionResult<IEnumerable<User>> GetPassangers([FromRoute] string travelId)
         {
             var users = _db.Passangers.Where(x => x.TravelId == travelId).Select(x => x.PassengerUser);
