@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarSharing.Travels
 {
+    [Route("api/travels")]
     public class TravelsController : ControllerBase
     {
         private readonly CarSharingContext _db;
@@ -15,20 +16,36 @@ namespace CarSharing.Travels
             _db = context;
         }
 
-        [HttpPost("{userId}/travels")]
-        public async Task<ActionResult> AddCar(string userId, CreateTravelRequest request)
+        [HttpGet]
+        public ActionResult GetTravels([FromRoute] string userId)
         {
-            var user = _db.Users.Single(x => x.Id == userId);
+            var travels = _db.Travels.Where(x => x.UserId == userId);
+            return Ok(travels);
+        }
 
-            var travel = new Travel()
-                             {
-                                 User = user,
-                                 Origin = request.Origin,
-                                 Destination = request.Destination,
-                                 DepartureTime = request.DepartureTime
-                             };
+        [HttpPost]
+        public async Task<ActionResult> AddTravel([FromBody] CreateTravelRequest request)
+        {
+            var travel = new Travel
+            {
+                UserId = request.UserId,
+                Origin = request.Origin,
+                Destination = request.Destination,
+                DepartureTime = request.DepartureTime
+            };
 
-            var asdf =  _db.Travels.Add(travel);
+            _db.Travels.Add(travel);
+
+            await _db.SaveChangesAsync();
+            return Ok(travel.Id);
+        }
+
+        [HttpPost("{travelId}/{userId}")]
+        public async Task<ActionResult> AddPassanger([FromRoute] string travelId, [FromRoute] string userId)
+        {
+            var passanger = new Passenger {TravelId = travelId, UserId = userId};
+
+            _db.Passangers.Add(passanger);
 
             await _db.SaveChangesAsync();
             return Ok();

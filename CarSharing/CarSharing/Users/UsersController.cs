@@ -54,7 +54,7 @@ namespace CarSharing.Users
                 await _db.SaveChangesAsync();
             }
 
-            return Ok();
+            return Ok(user.Entity.Id);
         }
 
         [HttpPost("{userId}/cars")]
@@ -62,10 +62,12 @@ namespace CarSharing.Users
         {
             var user = _db.Users.Single(x => x.Id == userId);
 
-            _db.Cars.Add(new Car { User = user, Number = request.Number });
+            var car = new Car {User = user, Number = request.Number};
+
+            _db.Cars.Add(car);
 
             await _db.SaveChangesAsync();
-            return Ok();
+            return Ok(car.Id);
         }
 
         [HttpGet("{userId}/cars")]
