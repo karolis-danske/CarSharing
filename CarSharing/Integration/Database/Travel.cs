@@ -12,8 +12,8 @@ namespace Integration.Database
         public string Origin { get; set; }
         public string Destination { get; set; }
         public DateTimeOffset DepartureTime { get; set; }
-        public List<Passenger> Passangers { get; set; }
-        public string UserId { get; set; }
-        public User User { get; set; }
+        public List<Passenger> Passengers { get; set; }
+        public string DriverUserId { get; set; }
+        public User DriverUser { get; set; }
     }
 }

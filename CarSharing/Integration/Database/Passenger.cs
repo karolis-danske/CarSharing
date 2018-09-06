@@ -9,8 +9,8 @@ namespace Integration.Database
     public class Passenger
     {
         public string Id { get; set; }
-        public string UserId { get; set; }
-        public User User { get; set; }
+        public string PassengerUserId { get; set; }
+        public User PassengerUser { get; set; }
         public string TravelId { get; set; }
         public Travel Travel { get; set; }
     }

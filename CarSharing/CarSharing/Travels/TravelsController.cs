@@ -21,7 +21,7 @@ namespace CarSharing.Travels
         [HttpGet]
         public ActionResult GetTravels([FromRoute] string userId)
         {
-            var travels = _db.Travels.Where(x => x.UserId == userId);
+            var travels = _db.Travels.Where(x => x.DriverUserId == userId);
             return Ok(travels);
         }
 
@@ -30,7 +30,7 @@ namespace CarSharing.Travels
         {
             var travel = new Travel
             {
-                UserId = request.UserId,
+                DriverUserId = request.DriverUserId,
                 Origin = request.Origin,
                 Destination = request.Destination,
                 DepartureTime = request.DepartureTime
@@ -45,7 +45,7 @@ namespace CarSharing.Travels
         [HttpPost("{travelId}/{userId}")]
         public async Task<ActionResult<string>> AddPassanger([FromRoute] string travelId, [FromRoute] string userId)
         {
-            var passanger = new Passenger {TravelId = travelId, UserId = userId};
+            var passanger = new Passenger {TravelId = travelId, PassengerUserId = userId};
 
             _db.Passangers.Add(passanger);
 
@@ -56,7 +56,7 @@ namespace CarSharing.Travels
         [HttpDelete("{travelId}/{userId}")]
         public async Task<ActionResult> RemovePassanger([FromRoute] string travelId, [FromRoute] string userId)
         {
-            var passanger = _db.Passangers.Single(x => x.TravelId == travelId && x.UserId == userId);
+            var passanger = _db.Passangers.Single(x => x.TravelId == travelId && x.PassengerUserId == userId);
 
             _db.Passangers.Remove(passanger);
 
@@ -67,7 +67,7 @@ namespace CarSharing.Travels
         [HttpDelete("{travelId}")]
         public ActionResult<IEnumerable<User>> GetPassangers([FromRoute] string travelId)
         {
-            var users = _db.Passangers.Where(x => x.TravelId == travelId).Select(x => x.User);
+            var users = _db.Passangers.Where(x => x.TravelId == travelId).Select(x => x.PassengerUser);
             return Ok(users);
         }
     }

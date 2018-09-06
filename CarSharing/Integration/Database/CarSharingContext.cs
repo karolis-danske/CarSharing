@@ -17,9 +17,9 @@ namespace Integartion.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<User>().HasOne<Car>(u => u.Car).WithOne(c => c.User).HasForeignKey<User>(x => x.CarId);
-            modelBuilder.Entity<User>().HasMany<Travel>(u => u.Travels).WithOne(t => t.User).HasForeignKey(x => x.UserId);
-            modelBuilder.Entity<User>().HasMany<Passenger>(u => u.Passangers).WithOne(p => p.User).HasForeignKey(x => x.UserId);
-            modelBuilder.Entity<Travel>().HasMany<Passenger>(t => t.Passangers).WithOne(p => p.Travel).HasForeignKey(x => x.TravelId);
+            modelBuilder.Entity<User>().HasMany<Travel>(u => u.Travels).WithOne(t => t.DriverUser).HasForeignKey(x => x.DriverUserId);
+            modelBuilder.Entity<User>().HasMany<Passenger>(u => u.Passangers).WithOne(p => p.PassengerUser).HasForeignKey(x => x.PassengerUserId);
+            modelBuilder.Entity<Travel>().HasMany<Passenger>(t => t.Passengers).WithOne(p => p.Travel).HasForeignKey(x => x.TravelId);
 
             var car = new Car { Id = "CarVeryUniqueGuid", Number = "YAU123" };
             modelBuilder.Entity<Car>().HasData(car);
@@ -46,7 +46,7 @@ namespace Integartion.Database
                 DepartureTime = new DateTimeOffset(new DateTime(2018, 9, 28, 9, 0, 0)),
                 Destination = "54.700690, 25.261981",
                 Origin = "54.670396, 25.284133",
-                UserId = driverUser.Id
+                DriverUserId = driverUser.Id
             };
             modelBuilder.Entity<Travel>().HasData(travel);
 
@@ -54,7 +54,7 @@ namespace Integartion.Database
             {   
                 Id = "PassengerVeryUniqueGuid",
                 TravelId = travel.Id,
-                UserId = passengerUser.Id
+                PassengerUserId = passengerUser.Id
             };
             modelBuilder.Entity<Passenger>().HasData(passenger);
         }

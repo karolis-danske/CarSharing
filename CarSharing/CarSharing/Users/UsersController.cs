@@ -86,7 +86,7 @@ namespace CarSharing.Users
         [HttpGet("{userId}/travels")]
         public ActionResult<IEnumerable<Travel>> GetTravels([FromRoute] string userId)
         {
-            var travels = _db.Passangers.Where(x => x.UserId == userId).Select(x => x.Travel);
+            var travels = _db.Passangers.Where(x => x.PassengerUserId == userId).Select(x => x.Travel);
 
             return Ok(travels);
         }
