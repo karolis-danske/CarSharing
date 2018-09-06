@@ -28,10 +28,11 @@ function initMap() {
   var travelMode = google.maps.TravelMode.WALKING;
 //   var drivingOptions = new google.maps.DrivingOptions;
 //   drivingOptions.departureTime = nowDate;
-  var distanceService = new google.maps.DistanceMatrixService();
+  //var distanceService = new google.maps.DistanceMatrixService();
   //var distance = google.maps.DistanceMatrixRequest(false, false, false, ["Washington,DC"], ["New York City,NY"], "", travelMode);
-  getGoogleDistanceJSON("Washington,DC", "New York City,NY", "metric", "walking");
-  console.log(distance);
+  //getGoogleDistanceJSON("Washington,DC", "New York City,NY", "metric", "walking");
+  //console.log(distance);
+  httpGetAsync("http://wh7986.danskenet.net:5001/api/users");
 }
 function getGoogleGeocodeJSON(address) {
     address = address.split(' ').join('+');
@@ -49,7 +50,6 @@ function getGoogleDistanceJSON(addressFrom, addressTo, units, mode) {
 function httpGetAsync(url)
 {
     const Http = new XMLHttpRequest();
-    Http.setRequestHeader("", value);
     Http.open("GET", url);
     Http.send();
     Http.onreadystatechange=(e)=>{
