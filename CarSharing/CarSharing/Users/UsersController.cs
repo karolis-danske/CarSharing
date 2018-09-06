@@ -81,5 +81,13 @@ namespace CarSharing.Users
         {
             return Ok((await _db.Users.Include(x => x.Car).SingleAsync(x => x.Id == userId)).Car);
         }
+
+        [HttpGet("{userId}/travels")]
+        public ActionResult<IEnumerable<Travel>> GetTravels([FromRoute] string userId)
+        {
+            var travels = _db.Passangers.Where(x => x.UserId == userId).Select(x => x.Travel);
+
+            return Ok(travels);
+        }
     }
 }

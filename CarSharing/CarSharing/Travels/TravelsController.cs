@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarSharing.Travels
 {
+    using System.Collections.Generic;
+
     [Route("api/travels")]
     public class TravelsController : ControllerBase
     {
@@ -61,6 +63,12 @@ namespace CarSharing.Travels
             await _db.SaveChangesAsync();
             return Ok();
         }
-    }
 
+        [HttpDelete("{travelId}")]
+        public ActionResult<IEnumerable<User>> GetPassangers([FromRoute] string travelId)
+        {
+            var users = _db.Passangers.Where(x => x.TravelId == travelId).Select(x => x.User);
+            return Ok(users);
+        }
+    }
 }
