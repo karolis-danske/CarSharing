@@ -60,10 +60,10 @@ namespace CarSharing.Travels
             return Ok(passanger.Id);
         }
 
-        [HttpDelete("{travelId}/{userId}")]
-        public async Task<ActionResult> RemovePassanger([FromRoute] string travelId, [FromRoute] string userId)
+        [HttpDelete("{travelId}/{passengerUserId}")]
+        public async Task<ActionResult> RemovePassanger([FromRoute] string travelId, [FromRoute] string passengerUserId)
         {
-            var passanger = _db.Passangers.Single(x => x.TravelId == travelId && x.PassengerUserId == userId);
+            var passanger = _db.Passangers.Single(x => x.TravelId == travelId && x.PassengerUserId == passengerUserId);
 
             _db.Passangers.Remove(passanger);
 
@@ -77,5 +77,13 @@ namespace CarSharing.Travels
             var users = _db.Passangers.Where(x => x.TravelId == travelId).Select(x => x.PassengerUser);
             return Ok(users);
         }
+
+        [HttpGet("allPassengers")]
+        public ActionResult<IEnumerable<User>> GetPassangers()
+        {
+            var users = _db.Passangers.ToList();
+            return Ok(users);
+        }
+
     }
 }
