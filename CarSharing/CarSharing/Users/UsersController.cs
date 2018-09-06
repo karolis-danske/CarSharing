@@ -20,7 +20,6 @@ namespace CarSharing.Users
             _db = context;
         }
 
-        [HttpGet("all")]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return Ok(await _db.Users.Include(x => x.Car).ToListAsync());
