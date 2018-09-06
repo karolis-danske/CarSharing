@@ -38,7 +38,7 @@ namespace Integartion.Database
                 PhoneNumber = "864001010"
             };
             var users = new List<User>() { driverUser, passengerUser };
-            modelBuilder.Entity<User>().HasData(users);
+            modelBuilder.Entity<User>().HasData(driverUser, passengerUser);
 
             var travel = new Travel()
             {
@@ -57,10 +57,9 @@ namespace Integartion.Database
                 UserId = passengerUser.Id
             };
             modelBuilder.Entity<Passenger>().HasData(passenger);
-
         }
 
-
+        
 
         public DbSet<TestTable> TestTables { get; set; }
         public DbSet<Car> Cars { get; set; }

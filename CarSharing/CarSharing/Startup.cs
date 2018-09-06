@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 namespace CarSharing
 {
     using Integartion.Database;
+
     using Microsoft.EntityFrameworkCore;
     using Swashbuckle.AspNetCore.Swagger;
 
@@ -30,7 +31,7 @@ namespace CarSharing
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<CarSharingContext>(opt => opt.UseInMemoryDatabase());
+            services.AddDbContext<CarSharingContext>(opt => opt.UseInMemoryDatabase("MEMORY"));
 
             services.AddSwaggerGen(c =>
             {
@@ -41,6 +42,13 @@ namespace CarSharing
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            // seed in memory database
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetService<CarSharingContext>();
+                context.Database.EnsureCreated();
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
