@@ -8,7 +8,10 @@
 
 	<link rel="stylesheet" href="layout/style.css">
 	<script src="js/dom.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="js/prototype.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmrpv61zgCo0rhWV4ssHBviBXQcsbMVk4"></script>
+	<script src="js/functions.js"></script>
 </head>
 <body class="homepage">
 <div id="wrapper" class="wrapper">
@@ -19,11 +22,13 @@
 		<div class="content">
 			<h3>Drivers nearby</h3>
 			<ul class="list drivers">
-				<li><div class="driver"><span class="name">Mantas</span><span class="car">BMW 330</span></div><div class="info"><span class="time">Leaves in <b>23 min</b></span><span class="destination">Dominikonu g. 45</span></div></li>
-				<li><div class="driver"><span class="name">Tomas</span><span class="car">Audi A4</span></div><div class="info"><span class="time">Leaves in <b>46 min</b></span><span class="destination">Saltoniskiu g. 2</span></div></li>
+				
 			</ul>
 		</div>
 	</section>
 </div>
+<script>
+	getDriverList();
+</script>
 </body>
 </html>

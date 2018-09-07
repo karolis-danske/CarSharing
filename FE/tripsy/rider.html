@@ -8,7 +8,10 @@
 
 	<link rel="stylesheet" href="layout/style.css">
 	<script src="js/dom.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="js/prototype.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmrpv61zgCo0rhWV4ssHBviBXQcsbMVk4"></script>
+	<script src="js/functions.js"></script>
 </head>
 <body class="homepage">
 <div id="wrapper" class="wrapper">
@@ -18,7 +21,7 @@
 	<section role="main" class="container">
 		<div class="content">
 			<div class="input-group">
-				<label class="destination"><i class="icon search"></i><input type="text" value="" placeholder="Where to" /></label>
+				<label class="destination"><i class="icon search"></i><input id="travelDestination" type="text" value="" placeholder="Where to" /></label>
 			</div>
 			<hr/>
 			<h3>When are you planning to leave</h3>
@@ -28,7 +31,7 @@
 			</div>
 			
 			<div class="cta-area">
-				<a class="btn primary" href="driver-list.html">Search for drivers</a>
+				<a class="btn primary" onclick="setDestination()">Search for drivers</a>
 			</div>	
 		
 		</div>

@@ -8,7 +8,10 @@
 
 	<link rel="stylesheet" href="layout/style.css">
 	<script src="js/dom.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="js/prototype.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmrpv61zgCo0rhWV4ssHBviBXQcsbMVk4"></script>
+	<script src="js/functions.js"></script>
 </head>
 <body class="homepage">
 <div id="wrapper" class="wrapper">
@@ -24,7 +27,7 @@
 			<h3>When are you planning to leave</h3>
 			
 			<div class="time-select">
-				<a class="item" href="#">15 min</a><a class="item" href="#">30 min</a><a class="item active" href="#">1h</a><a class="item" href="#">HH:MM</a>
+				<a class="item" onclick="localStorage.setItem('leavingTime', '15')">15 min</a><a class="item" onclick="localStorage.setItem('leavingTime', '30')">30 min</a><a class="item active" onclick="localStorage.setItem('leavingTime', '60')">1h</a><a class="item" href="#">HH:MM</a>
 			</div>
 			
 			<div class="cta-area">
