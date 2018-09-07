@@ -21,7 +21,7 @@ namespace CarSharing.Travels
         [HttpGet("{userId}")]
         public ActionResult GetTravels([FromRoute] string userId)
         {
-            var travels = _db.Travels.Where(x => x.DriverUserId == userId);
+            var travels = _db.Travels.Where(x => x.DriverUserId == userId).ToList();
             return Ok(travels);
         }
 
